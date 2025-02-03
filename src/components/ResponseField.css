@@ -1,7 +1,8 @@
 .responseField {
     background-color: var(--__white-color);
     width: 80%;
-    padding: 0.7rem 1rem 0.7rem 0;
+    height: 45px;
+    padding-right: 1rem;
     max-width: 700px;
     border-radius: 7px;
     filter: drop-shadow(0 4px 20px rgba(161, 161, 161, 0.25));
@@ -10,10 +11,30 @@
     align-items: center;
 
     .selection {
-        height: calc(100% + 0.7rem + 0.7rem);
+        height: 100%;
         width: 7px;
-        background-color: var(--__main-color);
         margin-right: 15px;
+    }
+
+    &.selected-answer {
+        background-color: var(--__secondary-color);
+        .selection{
+            background-color: var(--__main-color);
+        }
+    }
+
+    &.right-answer {
+        background-color: var(--__light-green-color);
+        .selection{
+            background-color: var(--__green-color);
+        }
+    }
+
+    &.wrong-answer {
+        background-color: var(--__light-red-color);
+        .selection{
+            background-color: var(--__red-color);
+        }
     }
 
     label {

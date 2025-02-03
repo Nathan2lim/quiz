@@ -1,8 +1,9 @@
 .mainButton {
     background-color: var(--__main-color);
     color: var(--__white-color);
+    font-family: var(--__main-font);
     border: none;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     border-radius: 5px;
     padding: 13px 5rem;
     transition: all 0.3s ease;

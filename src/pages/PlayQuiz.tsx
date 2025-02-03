@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './PlayQuiz.css';
 import ResponseFieldComponent from "../components/ResponseField";
-
+import ButtonComponent from "../components/Button";
+import ThemeCartComponent from "../components/ThemeCart";
 interface Question {
   _id: string;
   question: string;
@@ -60,7 +61,7 @@ const PlayQuiz = () => {
       setValidated(false);
     } else {
       alert(`Quiz terminé ! Score : ${score}/${quiz?.questions.length}`);
-      navigate("/quiz-list");
+      navigate("/");
     }
   };
 
@@ -69,10 +70,8 @@ const PlayQuiz = () => {
   return (
     <div className="GamePage">
       <div className="GameContainer">
-        <h1>{quiz.title}</h1>
-        <p>{quiz.description}</p>
-
-        <span className="text-lg font-semibold">
+        <ThemeCartComponent name={quiz.title} />
+        <span className="currentQuestion">
           Question {currentQuestion + 1} / {quiz.questions.length}
         </span>
         <p className="text-gray-800 mt-2">{quiz.questions[currentQuestion].question}</p>
@@ -83,35 +82,33 @@ const PlayQuiz = () => {
               key={index}
               response={reponse}
               className={
-                selectedAnswer === index
-                  ? validated
-                    ? index === quiz.questions[currentQuestion].reponse_correcte
-                      ? "right-answer"
-                      : "wrong-answer"
-                    : "selected-answer"
+                validated
+                  ? index === quiz.questions[currentQuestion].reponse_correcte
+                    ? "right-answer"
+                    : selectedAnswer === index
+                    ? "wrong-answer"
+                    : ""
+                  : selectedAnswer === index
+                  ? "selected-answer"
                   : ""
               }
-              onClick={() => handleAnswerSelection(index)}
+              onClick={!validated ? () => handleAnswerSelection(index) : undefined}
             />
           ))}
         </div>
 
         {!validated && (
-          <button
+          <ButtonComponent 
+            name="Valider"
             onClick={validateAnswer}
-            className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            Valider la réponse
-          </button>
+          />
         )}
 
         {validated && (
-          <button
+          <ButtonComponent 
+            name={currentQuestion < quiz.questions.length - 1 ? "Question suivante" : "Terminer le Quiz"}
             onClick={handleNextQuestion}
-            className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            {currentQuestion < quiz.questions.length - 1 ? "Question suivante" : "Terminer le Quiz"}
-          </button>
+          />
         )}
       </div>
     </div>
