@@ -1,0 +1,51 @@
+.responseField {
+    background-color: var(--__white-color);
+    width: 80%;
+    padding: 0.7rem 1rem 0.7rem 0;
+    max-width: 700px;
+    border-radius: 7px;
+    filter: drop-shadow(0 4px 20px rgba(161, 161, 161, 0.25));
+    text-align: left;
+    display: flex;
+    align-items: center;
+
+    .selection {
+        height: calc(100% + 0.7rem + 0.7rem);
+        width: 7px;
+        background-color: var(--__main-color);
+        margin-right: 15px;
+    }
+
+    label {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    .radio-custom {
+        width: 15px;
+        height: 15px;
+        border: 2px solid black;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    input:checked + .radio-custom {
+        border-color: var(--__main-color);
+        background-color: white;
+    }
+
+    input:checked + .radio-custom::after {
+        content: "";
+        width: 9px;
+        height: 9px;
+        background-color: var(--__main-color);
+        border-radius: 50%;
+    }
+}

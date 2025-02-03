@@ -1,0 +1,13 @@
+.mainButton {
+    background-color: var(--__main-color);
+    color: var(--__white-color);
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 13px 5rem;
+    transition: all 0.3s ease;
+    &:hover {
+        cursor: pointer;
+        background-color: var(--__btn-hover-color);
+    }
+}

@@ -1,0 +1,75 @@
+[
+    {
+      "title": "Quiz sur les Animaux",
+      "description": "Un quiz pour tester vos connaissances sur les animaux.",
+      "questions": [
+        {
+          "question": "Quel est le plus grand mammifère marin ?",
+          "reponses": ["Dauphin", "Baleine bleue", "Requin baleine", "Orque"],
+          "reponse_correcte": 1,
+          "explication": "La baleine bleue est le plus grand mammifère."
+        },
+        {
+          "question": "Combien de pattes a une araignée ?",
+          "reponses": ["4", "6", "8", "10"],
+          "reponse_correcte": 2,
+          "explication": "Les araignées ont 8 pattes."
+        },
+        {
+          "question": "Quel animal est connu pour hiberner tout l’hiver ?",
+          "reponses": ["Ours", "Loup", "Cerf", "Écureuil"],
+          "reponse_correcte": 0,
+          "explication": "L'ours hiberne pendant l’hiver pour économiser de l’énergie."
+        }
+      ]
+    },
+    {
+      "title": "Quiz sur la Science",
+      "description": "Un quiz pour tester vos connaissances scientifiques.",
+      "questions": [
+        {
+          "question": "Quelle est la planète la plus proche du Soleil ?",
+          "reponses": ["Terre", "Mars", "Vénus", "Mercure"],
+          "reponse_correcte": 3,
+          "explication": "Mercure est la planète la plus proche du Soleil."
+        },
+        {
+          "question": "Quel est l'élément chimique qui compose principalement l'air que nous respirons ?",
+          "reponses": ["Oxygène", "Azote", "Carbone", "Hydrogène"],
+          "reponse_correcte": 1,
+          "explication": "L’air est composé à 78% d’azote."
+        },
+        {
+          "question": "Quelle est la vitesse de la lumière ?",
+          "reponses": ["300 000 km/h", "300 000 km/s", "150 000 km/s", "150 000 km/h"],
+          "reponse_correcte": 1,
+          "explication": "La vitesse de la lumière est environ 300 000 km/s."
+        }
+      ]
+    },
+    {
+      "title": "Quiz sur l'Histoire",
+      "description": "Un quiz pour tester vos connaissances historiques.",
+      "questions": [
+        {
+          "question": "En quelle année a eu lieu la Révolution française ?",
+          "reponses": ["1789", "1815", "1848", "1492"],
+          "reponse_correcte": 0,
+          "explication": "La Révolution française a commencé en 1789."
+        },
+        {
+          "question": "Qui a peint La Joconde ?",
+          "reponses": ["Michel-Ange", "Léonard de Vinci", "Van Gogh", "Raphaël"],
+          "reponse_correcte": 1,
+          "explication": "Léonard de Vinci est l’auteur de La Joconde."
+        },
+        {
+          "question": "Quel pays a été le premier à envoyer un homme sur la Lune ?",
+          "reponses": ["URSS", "Chine", "USA", "France"],
+          "reponse_correcte": 2,
+          "explication": "Les États-Unis ont envoyé Neil Armstrong sur la Lune en 1969."
+        }
+      ]
+    }
+  ]
+  
