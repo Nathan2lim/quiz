@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import './PlayQuiz.css';
+import ResponseFieldComponent from "../components/ResponseField";
 
 interface Question {
   _id: string;
@@ -21,7 +23,7 @@ const PlayQuiz = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [validated, setValidated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,19 +41,23 @@ const PlayQuiz = () => {
     fetchQuiz();
   }, [id]);
 
-  const handleAnswer = (index: number) => {
+  const handleAnswerSelection = (index: number) => {
     setSelectedAnswer(index);
-    if (quiz && quiz.questions[currentQuestion].reponse_correcte === index) {
+  };
+
+  const validateAnswer = () => {
+    if (selectedAnswer === null) return;
+    setValidated(true);
+    if (quiz && quiz.questions[currentQuestion].reponse_correcte === selectedAnswer) {
       setScore(score + 1);
     }
-    setShowAnswer(true);
   };
 
   const handleNextQuestion = () => {
     if (quiz && currentQuestion < quiz.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
-      setShowAnswer(false);
+      setValidated(false);
     } else {
       alert(`Quiz terminé ! Score : ${score}/${quiz?.questions.length}`);
       navigate("/quiz-list");
@@ -61,36 +67,45 @@ const PlayQuiz = () => {
   if (!quiz) return <p>Chargement...</p>;
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4">{quiz.title}</h1>
-      <p className="text-gray-600">{quiz.description}</p>
+    <div className="GamePage">
+      <div className="GameContainer">
+        <h1>{quiz.title}</h1>
+        <p>{quiz.description}</p>
 
-      <div className="w-full max-w-xl bg-white shadow-md rounded-lg p-6 mt-4">
-        <h2 className="text-lg font-semibold">
+        <span className="text-lg font-semibold">
           Question {currentQuestion + 1} / {quiz.questions.length}
-        </h2>
+        </span>
         <p className="text-gray-800 mt-2">{quiz.questions[currentQuestion].question}</p>
 
-        <div className="mt-4">
+        <div className="response-container">
           {quiz.questions[currentQuestion].reponses.map((reponse, index) => (
-            <button
+            <ResponseFieldComponent 
               key={index}
-              onClick={() => handleAnswer(index)}
-              className={`w-full p-2 rounded border mt-2 ${
+              response={reponse}
+              className={
                 selectedAnswer === index
-                  ? index === quiz.questions[currentQuestion].reponse_correcte
-                    ? "bg-green-500 text-white"
-                    : "bg-red-500 text-white"
-                  : "bg-gray-200 hover:bg-gray-300"
-              }`}
-              disabled={showAnswer}
-            >
-              {reponse}
-            </button>
+                  ? validated
+                    ? index === quiz.questions[currentQuestion].reponse_correcte
+                      ? "right-answer"
+                      : "wrong-answer"
+                    : "selected-answer"
+                  : ""
+              }
+              onClick={() => handleAnswerSelection(index)}
+            />
           ))}
         </div>
 
-        {showAnswer && (
+        {!validated && (
+          <button
+            onClick={validateAnswer}
+            className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          >
+            Valider la réponse
+          </button>
+        )}
+
+        {validated && (
           <button
             onClick={handleNextQuestion}
             className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"

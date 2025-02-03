@@ -1,6 +1,6 @@
-import User from '../models/User';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+const User = require('../models/User');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 /** ========================
  *  AUTHENTIFICATION (REGISTER, LOGIN)
@@ -190,3 +190,13 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la suppression de l'utilisateur." });
   }
 };
+
+const addQuizResult = async (userId, quizId, score, total) => {
+    const user = await User.findById(userId);
+    if (!user) throw new Error('Utilisateur non trouvé');
+  
+    user.quizzes.push({ quizId, score, total });
+  
+    await user.save(); // Les moyennes seront mises à jour automatiquement
+    return user;
+  };

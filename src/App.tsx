@@ -8,6 +8,8 @@ import CreateQuiz from "./pages/CreateQuiz";
 import QuizList from "./pages/QuizList";
 import UserList from "./pages/UserList";
 import PlayQuiz from "./pages/PlayQuiz";
+import Profile from "./pages/Profile";
+
 function App() {
   return (
     <Routes>
@@ -19,6 +21,7 @@ function App() {
       <Route path="/quiz-list" element={<QuizList />} />
       <Route path="/users" element={<UserList />} />
       <Route path="/quiz/:id" element={<PlayQuiz />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
     
   );

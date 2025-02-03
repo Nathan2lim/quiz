@@ -29,10 +29,10 @@ const Game = () => {
                 <TimerComponent />
                 <p>Question</p>
                 <div className="response-container">
-                    <ResponseFieldComponent response='Réponse 1' key="1"/>
-                    <ResponseFieldComponent response='Réponse 2' key="2"/>
-                    <ResponseFieldComponent response='Réponse 3' key="3"/>
-                    <ResponseFieldComponent response='Réponse 4' key="4"/>
+                    <ResponseFieldComponent response='Réponse 1'/>
+                    <ResponseFieldComponent response='Réponse 2'/>
+                    <ResponseFieldComponent response='Réponse 3'/>
+                    <ResponseFieldComponent response='Réponse 4'/>
                 </div>
                 <ButtonComponent name="Valider" />
 
