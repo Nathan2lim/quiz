@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import ButtonComponent from '../components/Button';
 import './Home.css';
+import Navbar from '../components/Navbar';
 
 interface Quiz {
     _id: string;
@@ -39,6 +40,8 @@ const Home = () => {
 
     return (
         <div className='home'>
+
+            <Navbar />
             <div className='home__container'>
                 <h1>Quiz Game</h1>
                 <h2>Liste des quiz</h2>

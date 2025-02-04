@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { rollupVersion } = require('vite');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -34,7 +35,9 @@ const userSchema = new mongoose.Schema({
   generalAverage: {
     type: Number, // Moyenne générale de tous les quiz
     default: 0,
-  }
+  },
+
+  role: { type: String, default: 'user' } // Rôle de l'utilisateur
 });
 
 // Calcul automatique des moyennes avant de sauvegarder
