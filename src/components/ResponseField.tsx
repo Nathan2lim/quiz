@@ -1,8 +1,11 @@
 import './ResponseField.css';
-
-const ResponseFieldComponent = ({ response }: { response: string }) => {
-    return (
-        <div className="responseField">
+interface ResponseFieldProps {
+    response: string;
+    className?: string;
+    onClick?: () => void;
+}
+const ResponseFieldComponent: React.FC<ResponseFieldProps> = ({ response, className, onClick }) => {    return (
+        <div className={`responseField ${className}`} onClick={onClick}>
             <div className="selection"></div>
             <span>{response}</span>
         </div>

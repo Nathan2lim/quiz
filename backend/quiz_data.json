@@ -1,75 +1,290 @@
 [
-    {
-      "title": "Quiz sur les Animaux",
-      "description": "Un quiz pour tester vos connaissances sur les animaux.",
-      "questions": [
-        {
-          "question": "Quel est le plus grand mammifère marin ?",
-          "reponses": ["Dauphin", "Baleine bleue", "Requin baleine", "Orque"],
-          "reponse_correcte": 1,
-          "explication": "La baleine bleue est le plus grand mammifère."
-        },
-        {
-          "question": "Combien de pattes a une araignée ?",
-          "reponses": ["4", "6", "8", "10"],
-          "reponse_correcte": 2,
-          "explication": "Les araignées ont 8 pattes."
-        },
-        {
-          "question": "Quel animal est connu pour hiberner tout l’hiver ?",
-          "reponses": ["Ours", "Loup", "Cerf", "Écureuil"],
-          "reponse_correcte": 0,
-          "explication": "L'ours hiberne pendant l’hiver pour économiser de l’énergie."
-        }
-      ]
-    },
-    {
-      "title": "Quiz sur la Science",
-      "description": "Un quiz pour tester vos connaissances scientifiques.",
-      "questions": [
-        {
-          "question": "Quelle est la planète la plus proche du Soleil ?",
-          "reponses": ["Terre", "Mars", "Vénus", "Mercure"],
-          "reponse_correcte": 3,
-          "explication": "Mercure est la planète la plus proche du Soleil."
-        },
-        {
-          "question": "Quel est l'élément chimique qui compose principalement l'air que nous respirons ?",
-          "reponses": ["Oxygène", "Azote", "Carbone", "Hydrogène"],
-          "reponse_correcte": 1,
-          "explication": "L’air est composé à 78% d’azote."
-        },
-        {
-          "question": "Quelle est la vitesse de la lumière ?",
-          "reponses": ["300 000 km/h", "300 000 km/s", "150 000 km/s", "150 000 km/h"],
-          "reponse_correcte": 1,
-          "explication": "La vitesse de la lumière est environ 300 000 km/s."
-        }
-      ]
-    },
-    {
-      "title": "Quiz sur l'Histoire",
-      "description": "Un quiz pour tester vos connaissances historiques.",
-      "questions": [
-        {
-          "question": "En quelle année a eu lieu la Révolution française ?",
-          "reponses": ["1789", "1815", "1848", "1492"],
-          "reponse_correcte": 0,
-          "explication": "La Révolution française a commencé en 1789."
-        },
-        {
-          "question": "Qui a peint La Joconde ?",
-          "reponses": ["Michel-Ange", "Léonard de Vinci", "Van Gogh", "Raphaël"],
-          "reponse_correcte": 1,
-          "explication": "Léonard de Vinci est l’auteur de La Joconde."
-        },
-        {
-          "question": "Quel pays a été le premier à envoyer un homme sur la Lune ?",
-          "reponses": ["URSS", "Chine", "USA", "France"],
-          "reponse_correcte": 2,
-          "explication": "Les États-Unis ont envoyé Neil Armstrong sur la Lune en 1969."
-        }
-      ]
-    }
-  ]
-  
+  {
+    "title": "Quiz sur les Animaux",
+    "description": "Un quiz pour tester vos connaissances sur les animaux.",
+    "questions": [
+      {
+        "question": "Quel est le plus grand mammifère marin ?",
+        "reponses": ["Dauphin", "Baleine bleue", "Requin baleine", "Orque"],
+        "reponse_correcte": 1,
+        "explication": "La baleine bleue est le plus grand mammifère."
+      },
+      {
+        "question": "Combien de pattes a une araignée ?",
+        "reponses": ["4", "6", "8", "10"],
+        "reponse_correcte": 2,
+        "explication": "Les araignées ont 8 pattes."
+      },
+      {
+        "question": "Quel animal est connu pour hiberner tout l’hiver ?",
+        "reponses": ["Ours", "Loup", "Cerf", "Écureuil"],
+        "reponse_correcte": 0,
+        "explication": "L'ours hiberne pendant l’hiver pour économiser de l’énergie."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Science",
+    "description": "Un quiz pour tester vos connaissances scientifiques.",
+    "questions": [
+      {
+        "question": "Quelle est la planète la plus proche du Soleil ?",
+        "reponses": ["Terre", "Mars", "Vénus", "Mercure"],
+        "reponse_correcte": 3,
+        "explication": "Mercure est la planète la plus proche du Soleil."
+      },
+      {
+        "question": "Quel est l'élément chimique qui compose principalement l'air que nous respirons ?",
+        "reponses": ["Oxygène", "Azote", "Carbone", "Hydrogène"],
+        "reponse_correcte": 1,
+        "explication": "L’air est composé à 78% d’azote."
+      },
+      {
+        "question": "Quelle est la vitesse de la lumière ?",
+        "reponses": ["300 000 km/h", "300 000 km/s", "150 000 km/s", "150 000 km/h"],
+        "reponse_correcte": 1,
+        "explication": "La vitesse de la lumière est d’environ 300 000 km/s."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur l'Histoire",
+    "description": "Un quiz pour tester vos connaissances historiques.",
+    "questions": [
+      {
+        "question": "En quelle année a eu lieu la Révolution française ?",
+        "reponses": ["1789", "1815", "1848", "1492"],
+        "reponse_correcte": 0,
+        "explication": "La Révolution française a commencé en 1789."
+      },
+      {
+        "question": "Qui a peint La Joconde ?",
+        "reponses": ["Michel-Ange", "Léonard de Vinci", "Van Gogh", "Raphaël"],
+        "reponse_correcte": 1,
+        "explication": "Léonard de Vinci est l’auteur de La Joconde."
+      },
+      {
+        "question": "Quel pays a été le premier à envoyer un homme sur la Lune ?",
+        "reponses": ["URSS", "Chine", "USA", "France"],
+        "reponse_correcte": 2,
+        "explication": "Les États-Unis ont envoyé Neil Armstrong sur la Lune en 1969."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Géographie",
+    "description": "Un quiz pour tester vos connaissances en géographie.",
+    "questions": [
+      {
+        "question": "Quel est le plus grand continent sur Terre ?",
+        "reponses": ["Afrique", "Asie", "Amérique du Nord", "Europe"],
+        "reponse_correcte": 1,
+        "explication": "L’Asie est le plus grand continent tant par la superficie que par la population."
+      },
+      {
+        "question": "Quel est le plus haut sommet du monde ?",
+        "reponses": ["Mont Everest", "K2", "Kilimandjaro", "Mont Blanc"],
+        "reponse_correcte": 0,
+        "explication": "Le Mont Everest culmine à environ 8 848 mètres."
+      },
+      {
+        "question": "Dans quel pays se trouve la tour de Pise ?",
+        "reponses": ["Espagne", "France", "Italie", "Grèce"],
+        "reponse_correcte": 2,
+        "explication": "La tour de Pise se situe en Italie, dans la ville de Pise."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Littérature",
+    "description": "Testez vos connaissances sur les grandes œuvres et auteurs littéraires.",
+    "questions": [
+      {
+        "question": "Qui a écrit Les Misérables ?",
+        "reponses": ["Victor Hugo", "Gustave Flaubert", "Honoré de Balzac", "Émile Zola"],
+        "reponse_correcte": 0,
+        "explication": "Victor Hugo a publié Les Misérables en 1862."
+      },
+      {
+        "question": "Quel est le célèbre auteur de '1984' ?",
+        "reponses": ["George Orwell", "Aldous Huxley", "Ray Bradbury", "Philip K. Dick"],
+        "reponse_correcte": 0,
+        "explication": "George Orwell a écrit '1984', publié en 1949."
+      },
+      {
+        "question": "Dans quelle langue a été écrit 'Don Quichotte' ?",
+        "reponses": ["Anglais", "Espagnol", "Français", "Italien"],
+        "reponse_correcte": 1,
+        "explication": "Miguel de Cervantes a écrit 'Don Quichotte' en espagnol."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur le Cinéma",
+    "description": "Un quiz pour les cinéphiles et amateurs de grands films.",
+    "questions": [
+      {
+        "question": "Qui a réalisé le film 'Titanic' ?",
+        "reponses": ["Steven Spielberg", "Martin Scorsese", "James Cameron", "Christopher Nolan"],
+        "reponse_correcte": 2,
+        "explication": "James Cameron a réalisé le film 'Titanic', sorti en 1997."
+      },
+      {
+        "question": "Quel film a remporté l'Oscar du meilleur film en 2020 ?",
+        "reponses": ["Joker", "Parasite", "1917", "Once Upon a Time... in Hollywood"],
+        "reponse_correcte": 1,
+        "explication": "'Parasite', réalisé par Bong Joon-ho, a remporté l’Oscar du meilleur film en 2020."
+      },
+      {
+        "question": "Quel acteur incarne Iron Man dans l'univers Marvel ?",
+        "reponses": ["Chris Evans", "Robert Downey Jr.", "Chris Hemsworth", "Mark Ruffalo"],
+        "reponse_correcte": 1,
+        "explication": "Robert Downey Jr. interprète Tony Stark, alias Iron Man."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Musique",
+    "description": "Un quiz pour évaluer vos connaissances musicales.",
+    "questions": [
+      {
+        "question": "Quel groupe a chanté 'Bohemian Rhapsody' ?",
+        "reponses": ["The Beatles", "Pink Floyd", "Queen", "The Rolling Stones"],
+        "reponse_correcte": 2,
+        "explication": "'Bohemian Rhapsody' est une chanson de Queen, sortie en 1975."
+      },
+      {
+        "question": "Quel chanteur est surnommé 'Le Roi de la Pop' ?",
+        "reponses": ["Elvis Presley", "Michael Jackson", "Prince", "Justin Bieber"],
+        "reponse_correcte": 1,
+        "explication": "Michael Jackson est considéré comme 'Le Roi de la Pop'."
+      },
+      {
+        "question": "De quel pays est originaire le groupe ABBA ?",
+        "reponses": ["Royaume-Uni", "États-Unis", "Allemagne", "Suède"],
+        "reponse_correcte": 3,
+        "explication": "ABBA est un groupe de pop suédois formé à Stockholm."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Cuisine",
+    "description": "Découvrez si vous êtes un fin gourmet ou un grand cuisinier.",
+    "questions": [
+      {
+        "question": "Quelle épice donne sa couleur jaune au curry ?",
+        "reponses": ["Safran", "Curcuma", "Paprika", "Cumin"],
+        "reponse_correcte": 1,
+        "explication": "Le curcuma est souvent utilisé pour colorer le curry en jaune."
+      },
+      {
+        "question": "Quel pays est réputé pour la pizza et les pâtes ?",
+        "reponses": ["France", "Mexique", "Italie", "Grèce"],
+        "reponse_correcte": 2,
+        "explication": "L’Italie est célèbre pour la pizza et les pâtes."
+      },
+      {
+        "question": "Quel légume est l’un des ingrédients principaux de la ratatouille ?",
+        "reponses": ["Courgette", "Aubergine", "Tomate", "Poivron"],
+        "reponse_correcte": 1,
+        "explication": "L’aubergine est un ingrédient clé de la ratatouille."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur le Sport",
+    "description": "Un quiz pour les passionnés de sports en tout genre.",
+    "questions": [
+      {
+        "question": "Quel est le pays d'origine du football ?",
+        "reponses": ["France", "Brésil", "Angleterre", "Espagne"],
+        "reponse_correcte": 2,
+        "explication": "Le football moderne est né en Angleterre au milieu du XIXe siècle."
+      },
+      {
+        "question": "Combien de joueurs compte une équipe de basket-ball sur le terrain ?",
+        "reponses": ["5", "6", "7", "8"],
+        "reponse_correcte": 0,
+        "explication": "Une équipe de basket-ball est composée de 5 joueurs sur le terrain."
+      },
+      {
+        "question": "Dans quel sport le vainqueur remporte-t-il la Coupe Stanley ?",
+        "reponses": ["Basket-ball", "Hockey sur glace", "Baseball", "Football américain"],
+        "reponse_correcte": 1,
+        "explication": "La Coupe Stanley est décernée chaque année en Ligue nationale de hockey (NHL)."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur l'Informatique",
+    "description": "Testez vos connaissances sur le monde informatique.",
+    "questions": [
+      {
+        "question": "Quel est le langage de programmation créé par Guido van Rossum ?",
+        "reponses": ["Java", "Python", "C++", "Ruby"],
+        "reponse_correcte": 1,
+        "explication": "Python a été créé par Guido van Rossum et est paru en 1991."
+      },
+      {
+        "question": "Comment s'appelle le fondateur de Microsoft ?",
+        "reponses": ["Bill Gates", "Steve Jobs", "Mark Zuckerberg", "Elon Musk"],
+        "reponse_correcte": 0,
+        "explication": "Bill Gates et Paul Allen ont cofondé Microsoft en 1975."
+      },
+      {
+        "question": "Quel est le système d'exploitation open source le plus connu ?",
+        "reponses": ["Windows", "macOS", "Linux", "Android"],
+        "reponse_correcte": 2,
+        "explication": "Linux est un système d’exploitation open source largement utilisé."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Technologie",
+    "description": "Un quiz pour mesurer vos connaissances technologiques.",
+    "questions": [
+      {
+        "question": "Quelle entreprise a créé l’iPhone ?",
+        "reponses": ["Google", "Samsung", "Apple", "Microsoft"],
+        "reponse_correcte": 2,
+        "explication": "Apple a lancé le premier iPhone en 2007."
+      },
+      {
+        "question": "Comment s’appelle l’assistant vocal d’Amazon ?",
+        "reponses": ["Siri", "Cortana", "Alexa", "Google Assistant"],
+        "reponse_correcte": 2,
+        "explication": "L’assistant vocal d’Amazon se nomme Alexa."
+      },
+      {
+        "question": "Quel réseau social appartient à Facebook ?",
+        "reponses": ["TikTok", "LinkedIn", "Instagram", "Twitter"],
+        "reponse_correcte": 2,
+        "explication": "Instagram a été racheté par Facebook (Meta) en 2012."
+      }
+    ]
+  },
+  {
+    "title": "Quiz sur la Mythologie",
+    "description": "Un quiz pour tester vos connaissances sur les mythologies du monde.",
+    "questions": [
+      {
+        "question": "Qui est le dieu grec du tonnerre ?",
+        "reponses": ["Arès", "Zeus", "Hadès", "Hermès"],
+        "reponse_correcte": 1,
+        "explication": "Zeus est le dieu du ciel et du tonnerre dans la mythologie grecque."
+      },
+      {
+        "question": "Quel dieu égyptien a une tête de chacal ?",
+        "reponses": ["Rê", "Seth", "Anubis", "Osiris"],
+        "reponse_correcte": 2,
+        "explication": "Anubis est représenté avec une tête de chacal et est le dieu des morts."
+      },
+      {
+        "question": "Quel est le dieu nordique de la foudre ?",
+        "reponses": ["Odin", "Thor", "Loki", "Frey"],
+        "reponse_correcte": 1,
+        "explication": "Thor, muni de son marteau Mjöllnir, est le dieu nordique de la foudre."
+      }
+    ]
+  }
+]
