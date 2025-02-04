@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import './PlayQuiz.css';
-import ResponseFieldComponent from "../components/ResponseField";
-import ButtonComponent from "../components/Button";
-import ThemeCartComponent from "../components/ThemeCart";
+import ResponseFieldComponent from "../../components/ResponseField/ResponseField";
+import ButtonComponent from "../../components/Button/Button";
+import ThemeCartComponent from "../../components/ThemeCart/ThemeCart";
+import Navbar from "../../components/Navbar/Navbar";
+
 interface Question {
   _id: string;
   question: string;
@@ -68,7 +70,8 @@ const PlayQuiz = () => {
   if (!quiz) return <p>Chargement...</p>;
 
   return (
-    <div className="GamePage">
+    <div className="main">
+      <Navbar />
       <div className="GameContainer">
         <ThemeCartComponent name={quiz.title} />
         <span className="currentQuestion">

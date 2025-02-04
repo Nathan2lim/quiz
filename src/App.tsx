@@ -1,18 +1,16 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Game from './pages/Game';
-import Login from "./pages/Login";
-import Register from "./pages/Register"; 
-import CreateQuiz from "./pages/CreateQuiz";
-import QuizList from "./pages/QuizList";
-import UserList from "./pages/UserList";
-import PlayQuiz from "./pages/PlayQuiz";
-import Profile from "./pages/Profile";
+import Home from './pages/Home/Home';
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register"; 
+import CreateQuiz from "./pages/Admin/CreateQuiz/CreateQuiz";
+import UserList from "./pages/Admin/UserList/UserList";
+import PlayQuiz from "./pages/PlayQuiz/PlayQuiz";
+import Profile from "./pages/Profile/Profile";
 
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminRoute from "./components/AdminRoute";
+import AdminRoute from "./components/adminRoute";
 
 
 function App() {
@@ -20,7 +18,6 @@ function App() {
     <AuthProvider>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/game" element={<Game />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         
@@ -32,14 +29,6 @@ function App() {
               <AdminRoute>
                 <CreateQuiz />
               </AdminRoute>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/quiz-list"
-          element={
-            <ProtectedRoute>
-              <QuizList />
             </ProtectedRoute>
           }
         />

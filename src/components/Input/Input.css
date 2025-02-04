@@ -1,0 +1,28 @@
+.form-group {
+    max-width: 350px;
+    width: 100%;
+    text-align: left;
+    
+    label {
+        padding-left: 2px;
+    }
+
+    input {
+        width: 100%;
+        border-radius: 7px;
+        border: 2px solid var(--__main-color);
+        height: 40px;
+        padding: 0 10px;
+        margin-top: 5px;
+        font-family: var(--__main-font);
+        color: var(--__text-color);
+        &::placeholder {
+            color: var(--__dark-grey-color);
+            font-family: var(--__main-font);
+        }
+        &:focus {
+            outline: none;
+            border: 3px solid var(--__btn-hover-color);
+        }
+    }
+}

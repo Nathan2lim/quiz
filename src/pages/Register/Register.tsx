@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
+import InputComponent from "../../components/Input/Input";
+import ButtonComponent from "../../components/Button/Button";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -33,48 +36,38 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold text-center mb-4">Inscription</h2>
-        {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-        <form onSubmit={handleRegister} className="space-y-4">
-          <input
+    <div className="main">
+      <Navbar />
+      <div className="auth-form">
+        <div>
+          <h2>Inscription</h2>
+          <p>Déjà un compte ? <Link to="/login">Connectez-vous !</Link></p>
+        </div>
+        <form onSubmit={handleRegister}>
+          {error && <p>{error}</p>}
+          <InputComponent
+            label="Nom d'utilisateur"
             type="text"
             placeholder="Nom d'utilisateur"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
           />
-          <input
+          <InputComponent
+            label="Email"
             type="email"
-            placeholder="Email"
+            placeholder="exemple@exemple.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
           />
-          <input
+          <InputComponent
+            label="Mot de passe"
             type="password"
             placeholder="Mot de passe"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 border rounded"
-            required
           />
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600"
-          >
-            S'inscrire
-          </button>
+          <ButtonComponent type="submit" name="Inscription" />
         </form>
-        <p className="text-sm text-center mt-4">
-          Déjà un compte ?{" "}
-          <a href="/login" className="text-blue-500 hover:underline">
-            Connectez-vous
-          </a>
-        </p>
       </div>
     </div>
   );

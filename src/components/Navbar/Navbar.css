@@ -1,0 +1,79 @@
+.navbar {
+    background-color: var(--__white-color);
+    color: var(--text_color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    top: 0;
+    filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.1));
+    z-index: 10;
+}
+
+.logo-navbar {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+    line-height: fit-content;
+}
+
+.welcome {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    cursor: pointer;
+    height: 100%;
+}
+
+.user-info img {
+    height: 25px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 90%;
+    right: -10px;
+    background-color: var(--__white-color);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.user-info:hover .dropdown-menu {
+    display: block;
+}
+
+button.dropdown-item {
+    background-color: transparent;
+    border: none;
+    font-family: var(--__main-font);
+    font-size: 1rem;
+    color: var(--__red-color);
+    &:hover {
+        background-color: var(--__light-red-color);
+    }
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px 20px;
+    color: var(--text_color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: var(--__secondary-color);
+}
