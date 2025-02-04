@@ -8,20 +8,65 @@ import CreateQuiz from "./pages/CreateQuiz";
 import QuizList from "./pages/QuizList";
 import UserList from "./pages/UserList";
 import PlayQuiz from "./pages/PlayQuiz";
+import Profile from "./pages/Profile";
+
+import { AuthProvider } from "./utils/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+
+
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/game" element={<Game />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/create-quiz" element={<CreateQuiz />} />
-      <Route path="/quiz-list" element={<QuizList />} />
-      <Route path="/users" element={<UserList />} />
-      <Route path="/quiz/:id" element={<PlayQuiz />} />
-    </Routes>
-    
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        
+        {/* Routes protégées */}
+        <Route
+          path="/create-quiz"
+          element={
+            <ProtectedRoute>
+              <CreateQuiz />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quiz-list"
+          element={
+            <ProtectedRoute>
+              <QuizList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <UserList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/quiz/:id"
+          element={
+            <ProtectedRoute>
+              <PlayQuiz />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   );
 }
 
-export default App
+export default App;

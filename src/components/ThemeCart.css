@@ -1,0 +1,10 @@
+.themeCart{
+    background-color: var(--__main-color);
+    color: var(--__white-color);
+    border-radius: 10px;
+    padding: 6px 20px;
+    margin-bottom: 1rem;
+    p{
+        margin: 0;
+    }
+}

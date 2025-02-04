@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const authRoutes = require('./routes/authRoutes');
 const quizRoutes = require('./routes/quizRoutes'); 
+const questionRoutes = require('./routes/questionRoutes'); 
 
 const app = express();
 

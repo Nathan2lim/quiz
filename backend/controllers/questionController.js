@@ -3,7 +3,7 @@ const Question = require("../models/Question");
 // ---------------------------
 // 🔹 Créer une question
 // ---------------------------
-exports.createQuestion = async (req, res) => {
+const createQuestion = async (req, res) => {
   try {
     const { question, reponses, reponse_correcte, explication } = req.body;
 
@@ -30,7 +30,7 @@ exports.createQuestion = async (req, res) => {
 // ---------------------------
 // 🔹 Récupérer toutes les questions
 // ---------------------------
-exports.getAllQuestions = async (req, res) => {
+const getAllQuestions = async (req, res) => {
   try {
     const questions = await Question.find();
     return res.json(questions);
@@ -43,7 +43,7 @@ exports.getAllQuestions = async (req, res) => {
 // ---------------------------
 // 🔹 Récupérer une question par ID
 // ---------------------------
-exports.getQuestionById = async (req, res) => {
+const getQuestionById = async (req, res) => {
   try {
     const question = await Question.findById(req.params.id);
     if (!question) {
@@ -59,7 +59,7 @@ exports.getQuestionById = async (req, res) => {
 // ---------------------------
 // 🔹 Mettre à jour une question
 // ---------------------------
-exports.updateQuestion = async (req, res) => {
+const updateQuestion = async (req, res) => {
   try {
     const { question, reponses, reponse_correcte, explication } = req.body;
 
@@ -84,7 +84,7 @@ exports.updateQuestion = async (req, res) => {
 // ---------------------------
 // 🔹 Supprimer une question
 // ---------------------------
-exports.deleteQuestion = async (req, res) => {
+const deleteQuestion = async (req, res) => {
   try {
     const deleted = await Question.findByIdAndDelete(req.params.id);
     if (!deleted) {
@@ -99,9 +99,9 @@ exports.deleteQuestion = async (req, res) => {
 
 // ✅ Exporter toutes les fonctions
 module.exports = {
-  createQuestion,
-  getAllQuestions,
-  getQuestionById,
-  updateQuestion,
-  deleteQuestion,
+    createQuestion,
+    getAllQuestions,
+    getQuestionById,
+    updateQuestion,
+    deleteQuestion,
 };
