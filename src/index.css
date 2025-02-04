@@ -26,7 +26,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+* {
+  box-sizing: border-box;
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -60,4 +62,39 @@ h1 {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* For Webkit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #888 transparent;
+}
+
+/* For Internet Explorer and Edge */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }

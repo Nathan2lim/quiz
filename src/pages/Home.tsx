@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import ButtonComponent from '../components/Button';
+import SelectQuizComponent from '../components/SelectQuiz';
 import './Home.css';
 import Navbar from '../components/Navbar';
 
@@ -43,28 +43,26 @@ const Home = () => {
 
             <Navbar />
             <div className='home__container'>
-                <h1>Quiz Game</h1>
-                <h2>Liste des quiz</h2>
+                {/* <h1>Quiz Game</h1> */}
+                <h2>Choississez votre quiz !</h2>
                 {loading && <p>Chargement...</p>}
                 {error && <p className="text-red-500">{error}</p>}
 
-                <div className="w-full max-w-3xl bg-white shadow-md rounded-lg p-4">
+                <div className='quizzes'>
                     {quizzes.length === 0 && !loading && <p>Aucun quiz disponible.</p>}
                     {quizzes.map((quiz) => (
-                    <div key={quiz._id} className="border-b py-4">
-                        <h2 className="text-lg font-semibold">{quiz.title}</h2>
-                        <p className="text-gray-500 text-sm">{quiz.description}</p>
-                        <button
-                        onClick={() => handleStartQuiz(quiz._id)}
-                        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-                        >
-                        Lancer le Quiz
-                        </button>
-                    </div>
+                        <SelectQuizComponent key={quiz._id} id={quiz._id} title={quiz.title} description={quiz.description} onClick={() => handleStartQuiz(quiz._id)} />
+                    // <div key={quiz._id}>
+                    //     <h2>{quiz.title}</h2>
+                    //     <p>{quiz.description}</p>
+                    //     <button
+                    //     onClick={() => handleStartQuiz(quiz._id)}
+                    //     >
+                    //     Lancer le Quiz
+                    //     </button>
+                    // </div>
                     ))}
                 </div>
-
-                <ButtonComponent name="Jouer" onClick={() => navigate('game')}/>
             </div>
         </div>
     );
