@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 
 
 function App() {
@@ -28,7 +29,9 @@ function App() {
           path="/create-quiz"
           element={
             <ProtectedRoute>
-              <CreateQuiz />
+              <AdminRoute>
+                <CreateQuiz />
+              </AdminRoute>
             </ProtectedRoute>
           }
         />

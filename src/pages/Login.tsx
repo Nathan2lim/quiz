@@ -10,26 +10,30 @@ const Login = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
+  
     try {
       const response = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
-
+  
       if (!response.ok) {
         throw new Error(data.message || "Erreur de connexion");
       }
-
-      localStorage.setItem("token", data.token); // Stocke le token
+  
+      // Stocker l'utilisateur et le token dans localStorage
+      localStorage.setItem("token", data.token); 
+      localStorage.setItem("user", JSON.stringify(data.user)); // Ajout de l'utilisateur
+  
       navigate("/"); // Redirige vers la page d'accueil
     } catch (err: any) {
       setError(err.message);
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
