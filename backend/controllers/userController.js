@@ -201,3 +201,53 @@ const addQuizResult = async (userId, quizId, score, total) => {
     await user.save(); // Les moyennes seront mises à jour automatiquement
     return user;
   };
+
+  exports.updateUser = async (req, res) => {
+    try {
+      const { oldPassword, password, username, email } = req.body;
+      const user = await User.findById(req.params.id);
+  
+      if (!user) {
+        return res.status(404).json({ message: "Utilisateur non trouvé." });
+      }
+  
+      // Vérifier (optionnel) que l'utilisateur qui modifie
+      // est bien le propriétaire du compte ou un admin
+  
+      // Changer le mot de passe, si fourni
+      if (password) {
+        // on suppose qu'on a oldPassword pour vérification
+        const isMatch = await bcrypt.compare(oldPassword, user.password);
+        if (!isMatch) {
+          return res.status(400).json({ message: "Ancien mot de passe incorrect." });
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        user.password = hashedPassword;
+      }
+  
+      // Changer le nom d'utilisateur, si fourni
+      if (username) {
+        user.username = username;
+      }
+  
+      // Changer l'email, si fourni
+      if (email) {
+        user.email = email;
+      }
+  
+      await user.save();
+  
+      res.status(200).json({
+        message: "Utilisateur mis à jour avec succès.",
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur lors de la mise à jour de l'utilisateur." });
+    }
+  };
