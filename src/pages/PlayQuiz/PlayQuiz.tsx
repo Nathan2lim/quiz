@@ -5,6 +5,8 @@ import ResponseFieldComponent from "../../components/ResponseField/ResponseField
 import ButtonComponent from "../../components/Button/Button";
 import ThemeCartComponent from "../../components/ThemeCart/ThemeCart";
 import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../utils/AuthContext";
+
 
 interface Question {
   _id: string;
@@ -22,12 +24,14 @@ interface Quiz {
 
 const PlayQuiz = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
   const [quiz, setQuiz] = useState<Quiz | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [validated, setValidated] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -44,26 +48,59 @@ const PlayQuiz = () => {
     fetchQuiz();
   }, [id]);
 
+  // --- Sélection d'une réponse ---
   const handleAnswerSelection = (index: number) => {
     setSelectedAnswer(index);
   };
 
+  // --- Validation de la réponse ---
   const validateAnswer = () => {
     if (selectedAnswer === null) return;
     setValidated(true);
+
     if (quiz && quiz.questions[currentQuestion].reponse_correcte === selectedAnswer) {
-      setScore(score + 1);
+      setScore((prevScore) => prevScore + 1);
     }
   };
 
-  const handleNextQuestion = () => {
+  // --- Passer à la question suivante OU Terminer le quiz ---
+  const handleNextQuestion = async () => {
+
+    const userId = user?.id;
+
+    // S'il reste des questions
     if (quiz && currentQuestion < quiz.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setValidated(false);
-    } else {
-      alert(`Quiz terminé ! Score : ${score}/${quiz?.questions.length}`);
-      navigate("/");
+    } 
+    // Sinon, le quiz est terminé
+    else {
+      try {        
+
+        // On envoie les résultats au back-end
+        const response = await fetch("http://localhost:5000/api/quiz/submit-score", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId,
+            quizId: quiz?._id,      
+            score: score,
+            total: quiz?.questions.length,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erreur lors de l'envoi des résultats du quiz");
+        }
+
+        // Redirection vers la page de résultats
+        navigate(`/resultats?score=${score}&total=${quiz?.questions.length}`);
+      } catch (error) {
+        console.error(error);
+      }
     }
   };
 
@@ -74,14 +111,18 @@ const PlayQuiz = () => {
       <Navbar />
       <div className="GameContainer">
         <ThemeCartComponent name={quiz.title} />
+
         <span className="currentQuestion">
           Question {currentQuestion + 1} / {quiz.questions.length}
         </span>
-        <p className="text-gray-800 mt-2">{quiz.questions[currentQuestion].question}</p>
+
+        <p className="text-gray-800 mt-2">
+          {quiz.questions[currentQuestion].question}
+        </p>
 
         <div className="response-container">
           {quiz.questions[currentQuestion].reponses.map((reponse, index) => (
-            <ResponseFieldComponent 
+            <ResponseFieldComponent
               key={index}
               response={reponse}
               className={
@@ -100,16 +141,22 @@ const PlayQuiz = () => {
           ))}
         </div>
 
+        {/* Bouton Valider si non validé */}
         {!validated && (
-          <ButtonComponent 
+          <ButtonComponent
             name="Valider"
             onClick={validateAnswer}
           />
         )}
 
+        {/* Bouton "Suivant" ou "Terminer" si validé */}
         {validated && (
-          <ButtonComponent 
-            name={currentQuestion < quiz.questions.length - 1 ? "Question suivante" : "Terminer le Quiz"}
+          <ButtonComponent
+            name={
+              currentQuestion < quiz.questions.length - 1
+                ? "Question suivante"
+                : "Terminer le Quiz"
+            }
             onClick={handleNextQuestion}
           />
         )}

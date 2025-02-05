@@ -5,6 +5,7 @@ interface User {
   id: string;
   username: string;
   email: string;
+  role: string;
 }
 
 interface AuthResponse {
@@ -14,16 +15,17 @@ interface AuthResponse {
 
 interface AuthContextType {
   user: User | null;
-  isLoading: boolean; // ✅ Ajout de isLoading pour éviter la redirection prématurée
+  isLoading: boolean; 
   login: (authData: AuthResponse) => void;
   logout: () => void;
+  isAdmin: () => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // ✅ Ajout de isLoading
+  const [isLoading, setIsLoading] = useState(true); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (loggedUser) {
       setUser(JSON.parse(loggedUser));
     }
-    setIsLoading(false); // ✅ Une fois les données récupérées, on arrête le chargement
+    setIsLoading(false); 
   }, []);
 
   const login = (authData: AuthResponse) => {
@@ -42,13 +44,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("token"); // ✅ Supprime aussi le token pour éviter les accès non autorisés
+    localStorage.removeItem("token"); 
     setUser(null);
     navigate("/login");
   };
 
   const isAdmin = () => {
-    return user?.role === "admin"; // ✅ Vérifie si l'utilisateur est admin
+    console.log(user?.role);
+    return user?.role === "admin"; 
   };
   
 
