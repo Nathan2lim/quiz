@@ -94,6 +94,10 @@ body {
   align-items: center;
 }
 
+.error-message {
+  color: var(--__red-color);
+  margin: 0;
+}
 /* Authentification pages styles */
 .auth-form {
   display: flex;

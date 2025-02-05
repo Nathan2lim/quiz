@@ -44,7 +44,7 @@ const Register = () => {
           <p>Déjà un compte ? <Link to="/login">Connectez-vous !</Link></p>
         </div>
         <form onSubmit={handleRegister}>
-          {error && <p>{error}</p>}
+          {error && <p className="error-message">{error}</p>}
           <InputComponent
             label="Nom d'utilisateur"
             type="text"

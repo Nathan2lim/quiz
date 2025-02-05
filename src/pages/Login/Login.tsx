@@ -47,7 +47,7 @@ const Login = () => {
           <p className="alreadyRegister">Pas encore de compte ?<Link to="/register"> Connectez-vous !</Link></p>
         </div>
         <form onSubmit={handleLogin}>
-          {error && <p>{error}</p>}
+          {error && <p className="error-message">{error}</p>}
           <InputComponent 
             label="Email"
             type="email"
