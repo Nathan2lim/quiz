@@ -23,5 +23,9 @@
         font-family: var(--__font-family);
         font-size: 1rem;
         padding: 0.5rem 1.7rem;
+        &:hover {
+            cursor: pointer;
+            background-color: var(--__btn-hover-color);
+        }
     }
 }

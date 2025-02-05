@@ -2,6 +2,12 @@
   text-align: center;
   height: 100vh;
   width: 100%;
+  display: flex;
+  align-items: end;
+  background-image: url("https://i.ibb.co/vxL9DQ7s/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .logo {
