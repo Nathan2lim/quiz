@@ -13,9 +13,6 @@ import Admin from './pages/Admin/Admin';
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/adminRoute";
-import ChangePassword from './pages/Profile/ChangePassword';
-import UpdateUsername from './pages/Profile/UpdateUsername';
-import UpdateEmail from './pages/Profile/UpdateEmail';
 
 
 function App() {
@@ -79,33 +76,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-<Route
-        path="/change-password"
-        element={
-          <ProtectedRoute>
-            <ChangePassword />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/update-username"
-        element={
-          <ProtectedRoute>
-            <UpdateUsername />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/update-email"
-        element={
-          <ProtectedRoute>
-            <UpdateEmail />
-          </ProtectedRoute>
-        }
-      />
-
-      
       </Routes>
     </AuthProvider>
   );

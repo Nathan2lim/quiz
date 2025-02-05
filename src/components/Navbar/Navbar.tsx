@@ -2,9 +2,17 @@ import { useAuth } from "../../utils/AuthContext";
 import { Link } from "react-router-dom";
 import './Navbar.css';
 import userImage from '../../assets/user.png';
+import axios from "axios";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, logout, isAdmin } = useAuth();
+  const [username, setUsername] = useState<string>("");
+
+  axios.get(`http://localhost:5000/api/auth/${user?.id}`)
+  .then((res) => setUsername(res.data.username))
+  .catch((err) => console.error(err));
+
 
   return (
     <nav className="navbar">
@@ -15,7 +23,7 @@ const Navbar = () => {
         <div className="welcome">
           {user && 
             <div className="user-info">
-              <span>{user.username}</span>
+              <span>{username}</span>
               <img src={userImage} alt="avatar" />
               <div className="dropdown-menu">
                 <Link to="/profile" className="dropdown-item">Compte</Link>

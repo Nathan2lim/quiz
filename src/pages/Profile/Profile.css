@@ -43,6 +43,17 @@
     button {
         align-self: flex-end;
     }
+    &.column {
+        flex-direction: column;
+        align-items: flex-start;
+        button {
+            align-self: flex-start;
+            margin-top: 1rem;
+            &:last-of-type {
+                margin-top: 0;
+            }
+        }
+    }
 }
 
 .AccountSection button {
@@ -53,6 +64,7 @@
     height: 40px;
     font-size: 1rem;
     font-family: var(--__main-font);
+    cursor: pointer;
 }
 
 table {

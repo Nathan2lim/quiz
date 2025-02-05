@@ -6,7 +6,7 @@ import ButtonComponent from "../../components/Button/Button";
 import ThemeCartComponent from "../../components/ThemeCart/ThemeCart";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../utils/AuthContext";
-
+import Timer from "../../components/Timer/Timer";
 
 interface Question {
   _id: string;
@@ -32,6 +32,7 @@ const PlayQuiz = () => {
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [validated, setValidated] = useState(false);
+  const [timeUp, setTimeUp] = useState(false);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -57,6 +58,7 @@ const PlayQuiz = () => {
   const validateAnswer = () => {
     if (selectedAnswer === null) return;
     setValidated(true);
+    setTimeUp(true); // Stop the timer
 
     if (quiz && quiz.questions[currentQuestion].reponse_correcte === selectedAnswer) {
       setScore((prevScore) => prevScore + 1);
@@ -73,6 +75,7 @@ const PlayQuiz = () => {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
       setValidated(false);
+      setTimeUp(false); // Restart the timer
     } 
     // Sinon, le quiz est terminé
     else {
@@ -104,6 +107,15 @@ const PlayQuiz = () => {
     }
   };
 
+  const handleTimeUp = () => {
+    setTimeUp(true);
+    setValidated(true);
+
+    if (quiz && quiz.questions[currentQuestion].reponse_correcte === selectedAnswer) {
+      setScore((prevScore) => prevScore + 1);
+    }
+  };
+
   if (!quiz) return <p>Chargement...</p>;
 
   return (
@@ -119,6 +131,8 @@ const PlayQuiz = () => {
         <p>
           {quiz.questions[currentQuestion].question}
         </p>
+
+        {!validated && !timeUp && <Timer duration={15} onTimeUp={handleTimeUp} />}
 
         <div className="response-container">
           {quiz.questions[currentQuestion].reponses.map((reponse, index) => (
@@ -136,21 +150,25 @@ const PlayQuiz = () => {
                   ? "selected-answer"
                   : ""
               }
-              onClick={!validated ? () => handleAnswerSelection(index) : undefined}
+              onClick={!validated && !timeUp ? () => handleAnswerSelection(index) : undefined}
             />
           ))}
         </div>
 
         {/* Bouton Valider si non validé */}
-        {!validated && (
+        {!validated && !timeUp && (
           <ButtonComponent
             name="Valider"
             onClick={validateAnswer}
           />
         )}
 
+        {timeUp && !selectedAnswer && (
+          <p>Temps écoulé ! Vous n'avez pas répondu à temps.</p>
+        )}
+
         {/* Bouton "Suivant" ou "Terminer" si validé */}
-        {validated && (
+        {(validated || timeUp) && (
           <ButtonComponent
             name={
               currentQuestion < quiz.questions.length - 1
