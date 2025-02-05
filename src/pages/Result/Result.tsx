@@ -48,7 +48,7 @@ function Resultats() {
     <div className="main">
       <Navbar />
       <div className="result-container">
-        <div>
+        <div className="result-header">
           <ThemeCartComponent name={quiz?.title ?? "Thème joué"} />
           <h2>Bien joué ! <img src={confettiImg}></img></h2>
         </div>
