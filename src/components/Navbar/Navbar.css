@@ -49,6 +49,7 @@
     border-radius: 4px;
     overflow: hidden;
     z-index: 1000;
+    width: 150px;
 }
 
 .user-info:hover .dropdown-menu {
@@ -61,6 +62,7 @@ button.dropdown-item {
     font-family: var(--__main-font);
     font-size: 1rem;
     color: var(--__red-color);
+    width: 100%;
     &:hover {
         background-color: var(--__light-red-color);
     }
@@ -76,4 +78,17 @@ button.dropdown-item {
 
 .dropdown-item:hover {
     background-color: var(--__secondary-color);
+}
+
+.nav-elements {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    height: 100%;
+    a {
+        color: var(--__text-color);
+        &:hover {
+            color: var(--__main-color);
+        }
+    }
 }
