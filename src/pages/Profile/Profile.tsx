@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Navbar from "../../components/Navbar/Navbar";
+import QuizHistoryTabComponent from "../../components/QuizHistoryTab/QuizHistoryTab";
+import InputComponent from "../../components/Input/Input"; // Import InputComponent
 import "./Profile.css";
 
 interface Quiz {
@@ -61,28 +63,39 @@ const Profile: React.FC = () => {
       <Navbar />
       <div className="ProfileContainer">
         <h2>Bonjour {user?.username} !</h2>
-        <p>Email : {user?.email}</p>
+        <div className="AccountSection">
+          <h2>Informations personnelles</h2>
+          <div className="AccountSectionInputs">
+            <InputComponent label="Nom d'utilisateur" name="username" type="text" value={user?.username} />
+            <button>Mettre à jour</button>
+          </div>
+          <div className="AccountSectionInputs">
+            <InputComponent label="Email" name="email" type="email" value={user?.email} />
+            <button>Mettre à jour</button>
+          </div>
 
-        <h2>Statistiques</h2>
-        <p>Moyenne générale : <strong>{user?.generalAverage.toFixed(2)}%</strong></p>
+          <h2>Statistiques</h2>
+          <p>Moyenne générale : <strong>{user?.generalAverage.toFixed(2)}%</strong></p>
+        </div>
 
         <h2>Historique des Quiz</h2>
-        <ul>
-          {user?.quizzes.length ? user.quizzes.map((quiz, index) => (
-            <li key={index}>
-              <p>Quiz ID : {quiz.quizId}</p>
-              <p>Note : {quiz.score} / {quiz.total} </p>
-              <p>Date : {new Date(quiz.date).toLocaleDateString()}</p>
-              <p>Moyenne sur ce quiz : {user.averageScorePerQuiz[quiz.quizId]?.toFixed(2)}%</p>
-            </li>
-          )) : <p>Aucun quiz effectué.</p>}
-        </ul>
+        <table>
+          <thead>
+            <tr>
+              <th>Nom du Quiz</th>
+              <th>Note</th>
+              <th>Date</th>
+              <th>Moyenne</th>
+            </tr>
+          </thead>
+          <tbody>
+            {user?.quizzes.length ? user.quizzes.map((quiz, index) => (
+              <QuizHistoryTabComponent key={index} quizIndex={index} quizId={quiz.quizId} score={quiz.score} total={quiz.total} date={quiz.date} />
+            )) : <tr><td colSpan={4}>Aucun quiz effectué.</td></tr>}
+          </tbody>
+        </table>
 
-        <button
-          onClick={handleLogout}
-        >
-          Déconnexion
-        </button>
+        <button onClick={handleLogout}>Déconnexion</button>
       </div>
     </div>
   );
