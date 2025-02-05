@@ -97,7 +97,7 @@ const PlayQuiz = () => {
         }
 
         // Redirection vers la page de résultats
-        navigate(`/resultats?score=${score}&total=${quiz?.questions.length}`);
+        navigate(`/resultats?score=${score}&total=${quiz?.questions.length}&quizId=${quiz?._id}`);
       } catch (error) {
         console.error(error);
       }
@@ -116,7 +116,7 @@ const PlayQuiz = () => {
           Question {currentQuestion + 1} / {quiz.questions.length}
         </span>
 
-        <p className="text-gray-800 mt-2">
+        <p>
           {quiz.questions[currentQuestion].question}
         </p>
 

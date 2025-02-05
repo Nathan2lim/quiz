@@ -8,6 +8,7 @@ import UserList from "./pages/Admin/UserList/UserList";
 import PlayQuiz from "./pages/PlayQuiz/PlayQuiz";
 import Profile from "./pages/Profile/Profile";
 import Resultats from "./pages/Result/Result";
+import Admin from './pages/Admin/Admin';
 
 import { AuthProvider } from "./utils/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -29,6 +30,16 @@ function App() {
             <ProtectedRoute>
               <AdminRoute>
                 <CreateQuiz />
+              </AdminRoute>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <AdminRoute>
+                <Admin />
               </AdminRoute>
             </ProtectedRoute>
           }
