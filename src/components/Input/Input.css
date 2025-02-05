@@ -5,6 +5,11 @@
     
     label {
         padding-left: 2px;
+        &::after {
+            content: "*";
+            color: var(--__red-color);
+            margin-left: 3px;
+        }
     }
 
     input {
@@ -23,6 +28,9 @@
         &:focus {
             outline: none;
             border: 3px solid var(--__btn-hover-color);
+        }
+        &.input-error {
+            border: 2px solid var(--__red-color);
         }
     }
 }
