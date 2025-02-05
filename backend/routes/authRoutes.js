@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const { verifyToken } = require('../utils/authMiddleware');
 
 // POST /api/auth/register
-router.post('/register', authController.register);
+router.post('/register', userController.register);
 
 // POST /api/auth/login
-router.post('/login', authController.login);
+router.post('/login', userController.login);
 
 // GET /api/auth/protected
-router.get('/protected', verifyToken, authController.protectedRoute);
+router.get('/protected', verifyToken, userController.protectedRoute);
 
 // POST /auth/users        -> créer un user
 router.post('/', userController.createUser);
