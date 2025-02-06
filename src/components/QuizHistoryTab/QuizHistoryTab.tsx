@@ -15,7 +15,7 @@ interface Quiz {
     description: string;
 }
 
-const QuizHistoryTabComponent: React.FC<QuizHistoryTabProps> = ({ quizIndex, quizId, score, total, date }) => {
+const QuizHistoryTabComponent: React.FC<QuizHistoryTabProps> = ({ quizId, score, total, date }) => {
     const [quiz, setQuiz] = useState<Quiz | null>(null);
 
     useEffect(() => {
