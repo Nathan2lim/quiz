@@ -122,11 +122,12 @@ const PlayQuiz = () => {
     <div className="main">
       <Navbar />
       <div className="GameContainer">
-        <ThemeCartComponent name={quiz.title} />
-
-        <span className="currentQuestion">
-          Question {currentQuestion + 1} / {quiz.questions.length}
-        </span>
+        <div className="quiz-header">
+          <ThemeCartComponent name={quiz.title} />
+          <span className="currentQuestion">
+            Question {currentQuestion + 1} / {quiz.questions.length}
+          </span>
+        </div>
 
         <p>
           {quiz.questions[currentQuestion].question}

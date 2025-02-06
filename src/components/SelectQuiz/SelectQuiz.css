@@ -28,17 +28,27 @@
             background-color: var(--__btn-hover-color);
         }
     }
+    .buttons {
+        display: flex;
+        gap: 10px;
+    }
     .delete-quiz-btn {
+        display: flex;
+        align-items: center;
         border: none;
         border-radius: 5px;
         background-color: var(--__red-color);
         color: var(--__white-color);
         font-family: var(--__font-family);
         font-size: 1rem;
-        padding: 0.5rem 1.7rem;
+        padding: 5px 10px;
+        height: 38px;
         &:hover {
             cursor: pointer;
-            background-color: var(--__btn-hover-color);
+            background-color: rgb(172, 0, 0);
+        }
+        img {
+            width: 17px;
         }
     }
 }

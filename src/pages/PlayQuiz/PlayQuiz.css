@@ -25,3 +25,16 @@ h1 {
         margin: 2rem 0;
     }
 }
+
+@media screen and (max-width: 768px) {
+    .GameContainer {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .quiz-header {
+        align-self: start;
+    }
+
+}
