@@ -27,5 +27,6 @@ router.put('/:id', userController.updateUser);
 // DELETE /auth/users/:id  -> supprimer un user
 router.delete('/:id', userController.deleteUser);
 
+router.put("/promote/:id", userController.promoteUser);
 
 module.exports = router;

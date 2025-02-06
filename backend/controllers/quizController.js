@@ -81,7 +81,7 @@ exports.getQuizById = async (req, res) => {
   };
   
 exports.deleteQuiz = async (req, res) => {
-
+  console.log("deleteQuiz");
   try {
     const { id } = req.params;
 

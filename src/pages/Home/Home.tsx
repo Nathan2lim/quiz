@@ -12,12 +12,7 @@ interface Quiz {
     description: string;
     questions: string[]; // IDs des questions
 }
-interface User {
-    id: string;
-    username: string;
-    email: string;
-    role: string;
-}
+
 const Home = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
     const [loading, setLoading] = useState(true);
