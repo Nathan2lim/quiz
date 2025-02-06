@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../../components/Navbar/Navbar";
+import Modal from "../../../components/Modal/Modal"; // Import the Modal component
 import './UserList.css';
+import deleteImg from '../../../assets/delete.png';
 
 interface User {
   _id: string;
@@ -14,6 +16,8 @@ const UserList = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+  const [modalData, setModalData] = useState({ title: "", description: "", username: "", userId: "", className: "" });
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -34,6 +38,32 @@ const UserList = () => {
     fetchUsers();
   }, []);
 
+  const handleActionClick = (title: string, description: string, username: string, userId: string, className: string) => {
+    setModalData({ title, description, username, userId, className });
+    setModalVisible(true);
+  };
+
+  const handleConfirm = async () => {
+    try {
+      let url = "";
+      if (modalData.className === "modal-delete") {
+        url = `http://localhost:5000/api/auth/${modalData.userId}`;
+      } else if (modalData.className === "modal-promote") {
+        url = `http://localhost:5000/api/auth/promote/${modalData.userId}`;
+      }
+      const response = await fetch(url, {
+        method: "DELETE", // Change method based on action
+        headers: { "Authorization": `Bearer ${localStorage.getItem("token")}` }
+      });
+      if (!response.ok) throw new Error("Erreur lors de l'exécution de l'action");
+      setUsers(users.filter(user => user._id !== modalData.userId));
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setModalVisible(false);
+    }
+  };
+
   return (
     <div className="main">
       <Navbar />
@@ -52,6 +82,7 @@ const UserList = () => {
                   <th>Email</th>
                   <th>Date de création</th>
                   <th>Rôle</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -61,6 +92,10 @@ const UserList = () => {
                     <td>{user.email}</td>
                     <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                     <td>{user.role}</td>
+                    <td className="actions">
+                      <button className="delete-btn" onClick={() => handleActionClick("Confirmer la suppression", "Êtes-vous sûr de vouloir supprimer cet utilisateur ?", user.username, user._id, "modal-delete")}><img src={deleteImg}></img></button>
+                      {user.role !== "admin" && <button className="admin-btn" onClick={() => handleActionClick("Confirmer la promotion", "Êtes-vous sûr de vouloir promouvoir cet utilisateur en tant qu'administrateur ?", user.username, user._id, "modal-promote")}>Promouvoir</button>}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -68,6 +103,7 @@ const UserList = () => {
           )}
         </div>
       </div>
+      {modalVisible && <Modal {...modalData} onClose={() => setModalVisible(false)} onConfirm={handleConfirm} />}
     </div>
   );
 };
