@@ -56,6 +56,7 @@ const Login = () => {
       localStorage.setItem("user", JSON.stringify(data.user)); // Ajout de l'utilisateur
 
       navigate("/"); // Redirige vers la page d'accueil
+      window.location.reload(); // Recharge la page pour mettre à jour le state de l'utilisateur
     } catch (err: any) {
       setErrors([err.message]);
     }

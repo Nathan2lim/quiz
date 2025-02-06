@@ -12,6 +12,11 @@
     border-radius: 15px;
     padding: 30px;
     filter: drop-shadow(0px 2px 12px rgba(0, 0, 0, 0.15));
+    .result-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .score {
         margin: 2rem 0;
         font-size: 1.7rem;

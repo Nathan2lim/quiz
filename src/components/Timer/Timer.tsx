@@ -11,7 +11,7 @@ const Timer: React.FC<TimerProps> = ({ duration = 15, onTimeUp }) => {
     const [timeLeft, setTimeLeft] = useState<number>(duration);
 
     useEffect(() => {
-        if (timeLeft <= 0) {
+        if (timeLeft < 0) {
             onTimeUp && onTimeUp();
             return;
         }
