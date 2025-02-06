@@ -8,7 +8,6 @@ import { useState } from "react";
 const Navbar = () => {
   const { user, logout, isAdmin } = useAuth();
   const [username, setUsername] = useState<string>("");
-
   axios.get(`http://localhost:5000/api/auth/${user?.id}`)
   .then((res) => setUsername(res.data.username))
   .catch((err) => console.error(err));

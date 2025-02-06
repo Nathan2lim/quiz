@@ -60,7 +60,7 @@ exports.createQuiz = async (req, res) => {
 // ---------------------------
 exports.getAllQuizzes = async (req, res) => {
   try {
-    const quizzes = await Quiz.find().populate("questions"); // Récupère les questions liées
+    const quizzes = await Quiz.find({ deletedAt: null }).populate("questions");
     return res.json(quizzes);
   } catch (error) {
     console.error(error);
@@ -79,4 +79,25 @@ exports.getQuizById = async (req, res) => {
       res.status(500).json({ message: "Erreur serveur" });
     }
   };
+  
+exports.deleteQuiz = async (req, res) => {
+
+  try {
+    const { id } = req.params;
+
+    // Vérifier si le quiz existe
+    const quiz = await Quiz.findById(id);
+    if (!quiz) {
+      return res.status(404).json({ message: "Quiz non trouvé" });
+    }
+
+    // Supprimer le quiz de la base de données
+    await Quiz.findByIdAndUpdate(id, { deletedAt: new Date() });
+
+    return res.status(200).json({ message: "Quiz supprimé avec succès" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Erreur lors de la suppression du quiz" });
+  }
+};
   

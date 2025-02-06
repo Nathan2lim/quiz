@@ -7,6 +7,7 @@ const Quiz = require("../models/Quiz");
 router.post("/", quizController.createQuiz);
 router.get("/", quizController.getAllQuizzes); 
 router.get("/:id", quizController.getQuizById); 
+router.delete("/:id", quizController.deleteQuiz);
 
 router.post("/submit-score", async (req, res) => {
     try {
