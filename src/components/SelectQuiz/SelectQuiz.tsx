@@ -1,4 +1,6 @@
 import './SelectQuiz.css';
+import deleteImg from '../../assets/delete.png';
+
 interface SelectQuizProps {
     id: string;
     title: string;
@@ -21,20 +23,20 @@ const SelectQuizComponent: React.FC<SelectQuizProps> = ({id, title, description,
             <p className='quiz-description'>{description}</p>
             {/* <button className='start-quiz-btn' onClick={onClick}>Lancer</button> */}
             <div className="buttons">
+                                {user?.role === "admin" && (
+                                    <button 
+                                        onClick={onDelete} 
+                                        className="delete-quiz-btn"
+                                    >
+                                        <img src={deleteImg} alt="delete" />
+                                    </button>
+                                )}
                                 <button 
                                     onClick={onStart} 
                                     className="start-quiz-btn"
                                 >
                                     Lancer
                                 </button>
-                                {user?.role === "admin" && (
-                                    <button 
-                                        onClick={onDelete} 
-                                        className="delete-quiz-btn"
-                                    >
-                                        Supprimer
-                                    </button>
-                                )}
                             </div>
 
         </div>
