@@ -5,6 +5,7 @@ const quizSchema = new mongoose.Schema({
   description: { type: String, required: true },
   questions: [{ type: mongoose.Schema.Types.ObjectId, ref: "Question" }], // Stocke les questions liées
   createdAt: { type: Date, default: Date.now },
+  deletedAt: { type: Date, default: null },
 });
 
 module.exports = mongoose.model("Quiz", quizSchema);
