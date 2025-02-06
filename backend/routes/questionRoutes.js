@@ -7,5 +7,4 @@ router.get("/", questionController.getAllQuestions); // Récupérer toutes les q
 router.get("/:id", questionController.getQuestionById); // Récupérer une question par ID
 router.put("/:id", questionController.updateQuestion); // Modifier une question
 router.delete("/:id", questionController.deleteQuestion); // Supprimer une question
-
 module.exports = router;

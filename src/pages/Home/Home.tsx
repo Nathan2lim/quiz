@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import SelectQuizComponent from '../../components/SelectQuiz/SelectQuiz';
 import './Home.css';
 import Navbar from '../../components/Navbar/Navbar';
+import { useAuth } from "../../utils/AuthContext";
+
 
 interface Quiz {
     _id: string;
@@ -10,12 +12,19 @@ interface Quiz {
     description: string;
     questions: string[]; // IDs des questions
 }
-
+interface User {
+    id: string;
+    username: string;
+    email: string;
+    role: string;
+}
 const Home = () => {
     const [quizzes, setQuizzes] = useState<Quiz[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+    const [message, setMessage] = useState(""); // ✅ Correction ici
     const navigate = useNavigate();
+    const { user} = useAuth();
 
     useEffect(() => {
         const fetchQuizzes = async () => {
@@ -38,6 +47,30 @@ const Home = () => {
       navigate(`/quiz/${quizId}`); // Redirige vers la page du quiz
     };
 
+    const handleDeleteQuiz = async (quizId: string) => {
+        try {
+            const token = localStorage.getItem("token");
+
+            const response = await fetch(`http://localhost:5000/api/quiz/${quizId}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(data.message || "Erreur lors de la suppression du quiz");
+            }
+
+            setQuizzes((prev) => prev.filter((quiz) => quiz._id !== quizId));
+            setMessage("Quiz supprimé avec succès !"); 
+        } catch (err: any) {
+            setMessage(err.message);
+        }
+    };
+
     return (
         <div className='main'>
             <Navbar />
@@ -45,12 +78,16 @@ const Home = () => {
                 <h2>Choississez votre quiz !</h2>
                 {loading && <p>Chargement...</p>}
                 {error && <p className="text-red-500">{error}</p>}
+                {message && <p className="text-green-500">{message}</p>}
 
                 <div className='quizzes'>
                     {quizzes.length === 0 && !loading && <p>Aucun quiz disponible.</p>}
                     {quizzes.map((quiz) => (
-                        <SelectQuizComponent key={quiz._id} id={quiz._id} title={quiz.title} description={quiz.description} onClick={() => handleStartQuiz(quiz._id)} />
+                        <SelectQuizComponent key={quiz._id} id={quiz._id} title={quiz.title} description={quiz.description} onStart={() => handleStartQuiz(quiz._id)}
+                        onDelete={() => handleDeleteQuiz(quiz._id)} user={user} />
                     ))}
+
+                    
                 </div>
             </div>
         </div>
