@@ -181,7 +181,7 @@ exports.updateUser = async (req, res) => {
 // SUPPRIMER UN UTILISATEUR
 exports.deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndRemove(req.params.id);
+    const user = await User.findByIdAndDelete(req.params.id);
     if (!user) {
       return res.status(404).json({ message: 'Utilisateur non trouvé.' });
     }
@@ -191,6 +191,7 @@ exports.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Erreur lors de la suppression de l'utilisateur." });
   }
 };
+
 
 const addQuizResult = async (userId, quizId, score, total) => {
     const user = await User.findById(userId);
@@ -251,3 +252,22 @@ const addQuizResult = async (userId, quizId, score, total) => {
       res.status(500).json({ message: "Erreur lors de la mise à jour de l'utilisateur." });
     }
   };
+
+  exports.promoteUser = async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        return res.status(404).json({ message: "Utilisateur non trouvé." });
+      }
+  
+      // Supposons que la promotion change le rôle de l'utilisateur
+      user.role = "admin"; // Modifie selon ton système de rôles
+      await user.save();
+  
+      res.status(200).json({ message: "Utilisateur promu avec succès.", user });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Erreur lors de la promotion de l'utilisateur." });
+    }
+  };
+  
