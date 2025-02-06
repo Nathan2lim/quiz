@@ -37,3 +37,38 @@
 .user-table tr:hover {
     background-color: #ddd;
 }
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    button {
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        height: 27px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: var(--__white-color);
+        transition: background-color 0.2s ease;
+        font-family: var(--__main-font);
+        &.delete-btn {
+            background-color: var(--__red-color);
+            &:hover {
+                background-color: rgb(172, 0, 0);
+            }
+            img {
+                width: 17px;
+            }
+        }
+
+        &.admin-btn {
+            background-color: var(--__green-color);
+            &:hover {
+                background-color: rgb(0, 172, 0);
+            }
+        }
+    }
+}
